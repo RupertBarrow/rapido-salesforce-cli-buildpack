@@ -38,7 +38,7 @@ install_sfdx_cli() {
 generate_npmrc() {
   log "Generating .npmrc file ..."
 
-  NPM_TOKEN=$(cat $ENV_DIR/NPM_TOKEN)
+  export NPM_TOKEN=$(cat $ENV_DIR/NPM_TOKEN)
   touch $BUILD_DIR/.npmrc
   echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> $BUILD_DIR/.npmrc
   echo "@rupertbarrow:registry=https://npm.pkg.github.com" >> $BUILD_DIR/.npmrc
@@ -50,7 +50,7 @@ generate_npmrc() {
 install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
-  echo y | NPM_CONFIG_REGISTRY=https://npm.pkg.github.com NPM_CONFIG_SCOPE=rupertbarrow sf plugins install @rupertbarrow/rapido-sf-plugin
+  echo y | NPM_CONFIG_REGISTRY=https://npm.pkg.github.com NPM_CONFIG_SCOPE=rupertbarrow sf plugins install https://github.com/RupertBarrow/rapido-sf-plugin
   sf plugins
 }
 
