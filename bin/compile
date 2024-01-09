@@ -39,15 +39,18 @@ generate_npmrc() {
   log "Generating .npmrc file ..."
 
   NPM_TOKEN=$(cat $ENV_DIR/NPM_TOKEN)
-  log $NPM_TOKEN
-  echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" > $BUILD_DIR/.npmrc
+  touch $BUILD_DIR/.npmrc
+  echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> $BUILD_DIR/.npmrc
   echo "@rupertbarrow:registry=https://npm.pkg.github.com" >> $BUILD_DIR/.npmrc
+
+  export NPM_CONFIG_REGISTRY=https://npm.pkg.github.com
+  export NPM_CONFIG_SCOPE=rupertbarrow
 }
 
 install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
-  echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
+  echo y | NPM_CONFIG_REGISTRY=https://npm.pkg.github.com NPM_CONFIG_SCOPE=rupertbarrow sf plugins install @rupertbarrow/rapido-sf-plugin
   sf plugins
 }
 
