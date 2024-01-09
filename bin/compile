@@ -42,6 +42,9 @@ install_rapido_sf_plugin() {
 //npm.pkg.github.com/:_authToken=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
 @rupertbarrow:registry=https://npm.pkg.github.com
 EOF
+  res=$(cat ~/.npmrc)
+  log ".npmrc"
+  log $res
 
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
   sf plugins
