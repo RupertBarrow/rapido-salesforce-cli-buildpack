@@ -35,17 +35,20 @@ install_sfdx_cli() {
   chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
 }
 
-install_rapido_sf_plugin() {
-  log "Installing rapido-sf-plugin ..."
+generate_npmrc() {
+  log "Generating .npmrc file ..."
 
-  NPM_TOKEN = $(cat $ENV_DIR/NPM_TOKEN)
+  NPM_TOKEN=$(cat $ENV_DIR/NPM_TOKEN)
   log $NPM_TOKEN
   echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" > $BUILD_DIR/.npmrc
   echo "@rupertbarrow:registry=https://npm.pkg.github.com" >> $BUILD_DIR/.npmrc
+}
+
+install_rapido_sf_plugin() {
+  log "Installing rapido-sf-plugin ..."
 
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
   sf plugins
-}
 
 install_jq() {
   log "Downloading jq ..."
@@ -72,6 +75,7 @@ debug "ENV_DIR: $ENV_DIR"
 debug "BP_DIR: $BP_DIR"
 
 setup_dirs
+generate_npmrc
 log "Starting CLI installation ..."
 install_sfdx_cli
 install_rapido_sf_plugin
