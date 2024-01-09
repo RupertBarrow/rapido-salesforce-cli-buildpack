@@ -77,6 +77,12 @@ install_jq
 # Create .profile.d folder
 mkdir -p $BUILD_DIR/.profile.d
 
+# NPM private Github registry : set NPM_TOKEN in the org which is installing this buildpack
+echo "
+@scope:registry=https://registry.npmjs.org
+//registry.npmjs.org/:_authToken=\${NPM_TOKEN}
+" > $BUILD_DIR/.npmrc
+
 # if no .profile.d/rapido_salesforce_cli_path.sh, create one
 if [ ! -f $BUILD_DIR/.profile.d/rapido_salesforce_cli_path.sh ]; then
   log "Creating rapido_salesforce_cli_path.sh ..."

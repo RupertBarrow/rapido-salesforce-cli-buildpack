@@ -11,6 +11,7 @@ To use `sfdx` and `jq`, you simply need to export the appropriate paths:
 ```
 export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
 export PATH="$BUILD_DIR/vendor/sfdx/jq:$PATH"
+export NPM_TOKEN:"$MY_GITHUB_PAT"
 ```
 
 The `$BUILD_DIR` is the path where your apps source is stored on the Heroku dyno.
