@@ -38,10 +38,8 @@ install_sfdx_cli() {
 install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
-  echo << EOF > ~/.npmrc
-//npm.pkg.github.com/:_authToken=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
-@rupertbarrow:registry=https://npm.pkg.github.com
-EOF
+  echo "//npm.pkg.github.com/:_authToken=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
+@rupertbarrow:registry=https://npm.pkg.github.com" > ~/.npmrc
   res=$(cat ~/.npmrc)
   log ".npmrc"
   log $res
