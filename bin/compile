@@ -38,6 +38,8 @@ install_sfdx_cli() {
 install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
+  NPM_TOKEN = $(cat $ENV_DIR/NPM_TOKEN)
+  log $NPM_TOKEN
   echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" > $BUILD_DIR/.npmrc
   echo "@rupertbarrow:registry=https://npm.pkg.github.com" >> $BUILD_DIR/.npmrc
 
