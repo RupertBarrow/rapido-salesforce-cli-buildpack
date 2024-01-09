@@ -52,7 +52,7 @@ generate_npmrc() {
 install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
-  echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
+  echo y | sf plugins install https://github.com/RupertBarrow/rapido-sf-plugin
 
   sf plugins
 }
