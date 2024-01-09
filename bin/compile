@@ -49,6 +49,7 @@ install_rapido_sf_plugin() {
 
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
   sf plugins
+}
 
 install_jq() {
   log "Downloading jq ..."
