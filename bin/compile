@@ -39,7 +39,7 @@ install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
   echo << EOF > $BUILD_DIR/.npmrc
-//npm.pkg.github.com/:_authToken=$NPM_TOKEN
+//npm.pkg.github.com/:_authToken=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
 @rupertbarrow:registry=https://npm.pkg.github.com
 EOF
 
@@ -84,7 +84,7 @@ mkdir -p $BUILD_DIR/.profile.d
 
 # NPM private Github registry : set GITHUB_TOKEN in the org which is installing this buildpack
 echo "
-//npm.pkg.github.com/:_authToken=\$NPM_TOKEN
+//npm.pkg.github.com/:_authToken=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
 @rupertbarrow:registry=https://npm.pkg.github.com
 " > $BUILD_DIR/.npmrc
 
