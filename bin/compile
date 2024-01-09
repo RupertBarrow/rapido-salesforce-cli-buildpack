@@ -54,7 +54,7 @@ install_rapido_sf_plugin() {
 
   export NPM_TOKEN=$(cat $ENV_DIR/NPM_TOKEN)
   #echo y | sf plugins install https://github.com/RupertBarrow/rapido-sf-plugin
-  echo y | sf plugins install git+https://$NPM_TOKEN:x-oauth-basic@github.com/RupertBarrow/rapido-sf-plugin
+  echo y | sf plugins install https://$NPM_TOKEN:x-oauth-basic@github.com/RupertBarrow/rapido-sf-plugin
 
   sf plugins
 }
