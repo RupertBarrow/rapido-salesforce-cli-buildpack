@@ -50,7 +50,7 @@ generate_npmrc() {
 install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
-  echo y | NPM_CONFIG_REGISTRY=https://npm.pkg.github.com NPM_CONFIG_SCOPE=rupertbarrow sf plugins install @rupertbarrow/rapido-sf-plugin
+  echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
   sf plugins
 }
 
@@ -79,7 +79,7 @@ debug "ENV_DIR: $ENV_DIR"
 debug "BP_DIR: $BP_DIR"
 
 setup_dirs
-generate_npmrc
+#generate_npmrc
 log "Starting CLI installation ..."
 install_sfdx_cli
 install_rapido_sf_plugin
