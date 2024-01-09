@@ -33,6 +33,8 @@ install_sfdx_cli() {
   mkdir -p "$BUILD_DIR/vendor/sfdx"
   cp -r sfdx "$BUILD_DIR/vendor/sfdx/cli"
   chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
+
+  sf version
 }
 
 generate_npmrc() {
@@ -51,6 +53,7 @@ install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
+
   sf plugins
 }
 
