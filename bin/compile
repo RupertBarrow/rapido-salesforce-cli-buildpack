@@ -38,8 +38,9 @@ install_sfdx_cli() {
 install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
-  # In Heroku, add the following buildpack in first position : https://github.com/LambdaSchool/heroku-buildpack-npmrc.git
-  # Then create an env variable named NPM_TOKEN with the value of the token : the buildpack will create the .npmrc file
+  echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" > $BUILD_DIR/.npmrc
+  echo "@rupertbarrow:registry=https://npm.pkg.github.com" >> $BUILD_DIR/.npmrc
+
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
   sf plugins
 }
@@ -78,6 +79,7 @@ install_jq
 
 # Create .profile.d folder
 mkdir -p $BUILD_DIR/.profile.d
+
 
 # if no .profile.d/rapido_salesforce_cli_path.sh, create one
 if [ ! -f $BUILD_DIR/.profile.d/rapido_salesforce_cli_path.sh ]; then
