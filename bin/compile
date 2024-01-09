@@ -39,9 +39,12 @@ install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
   echo "
-//npm.pkg.github.com/:_authToken=$NPM_TOKEN
+//npm.pkg.github.com/:_authToken=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
+//registry.npmjs.com/:_authToken=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
+//registry.npmjs.org/:_authToken=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
+//@rapido.org:registry=https://npm.pkg.github.com/
 @rupertbarrow:registry=https://npm.pkg.github.com
-" > $BUILD_DIR/.npmrc
+//@rupertbarrow:registry="https://registry.npmjs.org/:_authToken= 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" > $BUILD_DIR/.npmrc
 
   echo y | sf plugins install rupertbarrow/rapido-sf-plugin
   sf plugins
