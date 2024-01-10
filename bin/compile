@@ -73,7 +73,6 @@ install_rapido_sf_plugin() {
   # Install the plugin
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
   sf plugins
-  ls -al ~/.local/share
 }
 
 install_jq() {
@@ -112,30 +111,27 @@ install_jq
 # Create .profile.d folder
 mkdir -p $BUILD_DIR/.profile.d
 
-
-# if no .profile.d/rapido_salesforce_cli_path.sh, create one
-if [ ! -f $BUILD_DIR/.profile.d/rapido_salesforce_cli_path.sh ]; then
-  log "Creating rapido_salesforce_cli_path.sh ..."
-  echo "
-echo \"Updating PATH to include Salesforce CLI ...\"
-export PATH=\$PATH:/app/vendor/sfdx/cli/bin
+# if no .profile.d/rapido_salesforce_cli.sh, create one
+if [ ! -f $BUILD_DIR/.profile.d/rapido_salesforce_cli.sh ]; then
+  log "Creating rapido_salesforce_cli.sh ..."
+  cat <<EOF > $BUILD_DIR/.profile.d/rapido_salesforce_cli.sh
+echo "Updating PATH to include Salesforce CLI ..."
+export PATH=$PATH:/app/vendor/sfdx/cli/bin
 
 export SF_AUTOUPDATE_DISABLE=$SFDX_AUTOUPDATE_DISABLE
 unset SFDX_AUTOUPDATE_DISABLE
 export SF_JSON_TO_STDOUT=$SFDX_JSON_TO_STDOUT
 unset SFDX_JSON_TO_STDOUT
-expord SF_LAZY_LOAD_MODULES=$SFDX_LAZY_LOAD_MODULES
+export SF_LAZY_LOAD_MODULES=$SFDX_LAZY_LOAD_MODULES
 unset SFDX_LAZY_LOAD_MODULES
-
 
 echo "Moving rapido-sf-plugin from build_dir to .local ..."
 
 mkdir -p ~/.local/share/
 mv $BUILD_DIR/.local/share/sf ~/.local/share/.
+EOF
 
-" > $BUILD_DIR/.profile.d/rapido_salesforce_cli_path.sh
-
-  log "Generated $BUILD_DIR/.profile.d/rapido_salesforce_cli_path.sh to add CLI path"
+  log "Generated $BUILD_DIR/.profile.d/rapido_salesforce_cli.sh to add CLI path"
 fi
 
 header "DONE! Completed in $(($SECONDS - $START_TIME))s"
