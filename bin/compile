@@ -50,20 +50,17 @@ generate_npmrc() {
   echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN"         >> ~/.yarnrc
   echo "@rupertbarrow:registry=https://npm.pkg.github.com"   >> ~/.yarnrc
 
-  npmrc=$(cat ~/.npmrc)
-  log ".npmrc"
-  log $npmrc
+  #npmrc=$(cat ~/.npmrc)
+  #log ".npmrc"
+  #log $npmrc
 
-  yarnrc=$(cat ~/.yarnrc)
-  log ".yarnrc"
-  log $yarnrc
+  #yarnrc=$(cat ~/.yarnrc)
+  #log ".yarnrc"
+  #log $yarnrc
 
-  yarn_config=$($BUILD_DIR/vendor/sfdx/cli/node_modules/yarn/bin/yarn.js config list)
-  log "Yarn"
-  log $yarn_config
-
-  export NPM_CONFIG_REGISTRY=https://npm.pkg.github.com
-  export NPM_CONFIG_SCOPE=rupertbarrow
+  #yarn_config=$($BUILD_DIR/vendor/sfdx/cli/node_modules/yarn/bin/yarn.js config list)
+  #log "Yarn"
+  #log $yarn_config
 }
 
 install_rapido_sf_plugin() {
