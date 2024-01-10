@@ -73,9 +73,7 @@ install_rapido_sf_plugin() {
   # Install the plugin
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
   sf plugins
-  whoami
-  ls -al ~
-  ls -al ~/.local
+  ls -al ~/.local/share
 }
 
 install_jq() {
@@ -128,6 +126,12 @@ export SF_JSON_TO_STDOUT=$SFDX_JSON_TO_STDOUT
 unset SFDX_JSON_TO_STDOUT
 expord SF_LAZY_LOAD_MODULES=$SFDX_LAZY_LOAD_MODULES
 unset SFDX_LAZY_LOAD_MODULES
+
+
+echo "Moving rapido-sf-plugin from build_dir to .local ..."
+
+mkdir -p ~/.local/share/
+mv $BUILD_DIR/.local/share/sf ~/.local/share/.
 
 " > $BUILD_DIR/.profile.d/rapido_salesforce_cli_path.sh
 
