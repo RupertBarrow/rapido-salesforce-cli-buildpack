@@ -100,7 +100,7 @@ debug "ENV_DIR: $ENV_DIR"
 debug "BP_DIR: $BP_DIR"
 
 setup_dirs
-#generate_npmrc
+generate_npmrc
 log "Starting CLI installation ..."
 install_sfdx_cli
 install_rapido_sf_plugin
