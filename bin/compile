@@ -43,14 +43,13 @@ generate_npmrc() {
   export NPM_TOKEN=$(cat $ENV_DIR/NPM_TOKEN)
 
   touch ~/.npmrc
-  echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN"       >> ~/.npmrc
-  echo "@rupertbarrow:registry=https://npm.pkg.github.com" >> ~/.npmrc
+  echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN"         >> ~/.npmrc
+  echo "@rupertbarrow:registry=https://npm.pkg.github.com"   >> ~/.npmrc
   
   touch ~/.yarnrc
-  echo '"@rupertbarrow:registry" "https://npm.pkg.github.com"' >> ~/.yarnrc
-  echo "npmRegistryServer: "https://npm.pkg.github.com""       >> ~/.yarnrc
-  echo "npmAuthToken: $NPM_TOKEN"                              >> ~/.yarnrc
-  
+  echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN"         >> ~/.yarnrc
+  echo "@rupertbarrow:registry=https://npm.pkg.github.com"   >> ~/.yarnrc
+
   touch ~/.yarnrc.yml
   echo "npmScopes:"                                          >> ~/.yarnrc.yml
   echo "  rupertbarrow:"                                     >> ~/.yarnrc.yml
@@ -73,6 +72,9 @@ generate_npmrc() {
   yarn_config=$($BUILD_DIR/vendor/sfdx/cli/node_modules/yarn/bin/yarn.js config list)
   log "Yarn"
   log $yarn_config
+
+  yarn_cmd=$($BUILD_DIR/vendor/sfdx/cli/node_modules/yarn/bin/yarn.js config list)
+  $yarn_cmd config set registry https://npm.pkg.github.com
 
   export NPM_CONFIG_REGISTRY=https://npm.pkg.github.com
   export NPM_CONFIG_SCOPE=rupertbarrow
