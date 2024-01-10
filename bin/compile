@@ -66,9 +66,15 @@ generate_npmrc() {
 install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
+  # Whitelist the plugin
+  echo "[ @rupertbarrow/rapido-sf-plugin ]" > ~/.config/sf
+  
+  # Install the plugin
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
-
   sf plugins
+  whoami
+  ls -al ~
+  ls -al ~/.local
 }
 
 install_jq() {
