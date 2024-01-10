@@ -100,9 +100,9 @@ debug "ENV_DIR: $ENV_DIR"
 debug "BP_DIR: $BP_DIR"
 
 setup_dirs
-generate_npmrc
 log "Starting CLI installation ..."
 install_sfdx_cli
+generate_npmrc
 install_rapido_sf_plugin
 
 log "Starting jq installation ..."
