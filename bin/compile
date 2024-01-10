@@ -67,8 +67,8 @@ install_rapido_sf_plugin() {
   log "Installing rapido-sf-plugin ..."
 
   # Whitelist the plugin
-  mkdir -p ~/.config
-  echo "[ @rupertbarrow/rapido-sf-plugin ]" > ~/.config/sf
+  mkdir -p ~/.config/sf
+  echo "[ @rupertbarrow/rapido-sf-plugin ]" > ~/.config/sf/unsignedPluginAllowList.json
   
   # Install the plugin
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
