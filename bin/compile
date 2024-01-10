@@ -42,8 +42,20 @@ generate_npmrc() {
 
   export NPM_TOKEN=$(cat $ENV_DIR/NPM_TOKEN)
   touch $BUILD_DIR/.npmrc
-  echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> $BUILD_DIR/.npmrc
+  echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN"       >> $BUILD_DIR/.npmrc
   echo "@rupertbarrow:registry=https://npm.pkg.github.com" >> $BUILD_DIR/.npmrc
+  touch $BUILD_DIR/.yarnrc
+  echo '"@rupertbarrow:registry" "https://npm.pkg.github.com"' >> $BUILD_DIR/.yarnrc
+  echo "npmRegistryServer: "https://npm.pkg.github.com""       >> $BUILD_DIR/.yarnrc
+  echo "npmAuthToken: $NPM_TOKEN"                              >> $BUILD_DIR/.npmrc
+  touch $BUILD_DIR/.yarnrc.yml
+  echo "npmScopes:"                                          >> $BUILD_DIR/.yarnrc.yml
+  echo "  rupertbarrow:"                                     >> $BUILD_DIR/.yarnrc.yml
+  echo "    npmRegistryServer: "https://npm.pkg.github.com"" >> $BUILD_DIR/.yarnrc.yml
+  echo "    npmAuthToken: $NPM_TOKEN"                        >> $BUILD_DIR/.yarnrc.yml
+  echo "    npmAlwaysAuth: true"                             >> $BUILD_DIR/.yarnrc.yml
+
+
 
   export NPM_CONFIG_REGISTRY=https://npm.pkg.github.com
   export NPM_CONFIG_SCOPE=rupertbarrow
