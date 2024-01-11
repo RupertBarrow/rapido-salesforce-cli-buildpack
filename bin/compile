@@ -74,7 +74,7 @@ install_rapido_sf_plugin() {
   echo y | sf plugins install @rupertbarrow/rapido-sf-plugin
   sf plugins
 
-  # Save the plugins' ~/.local/share, before moving it to ~/.local/share at runtime
+  # Save the plugins' $BUILD_DIR/.local/share, before moving it to ~/.local/share at runtime
   mkdir -p $BUILD_DIR/vendor/sfdx/cli/share
   mv ~/.local/share/sf $BUILD_DIR/vendor/sfdx/cli/share/.
 }
@@ -85,6 +85,11 @@ install_jq() {
   cd "$BUILD_DIR/vendor/sfdx/jq"
   wget --quiet -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
   chmod +x jq
+}
+
+install_puppeteer_chrome() {
+  echo y | npx @puppeteer/browsers
+  echo y | npx @puppeteer/browsers install chrome
 }
 
 setup_dirs() {
@@ -129,10 +134,13 @@ unset SFDX_JSON_TO_STDOUT
 export SF_LAZY_LOAD_MODULES=\$SFDX_LAZY_LOAD_MODULES
 unset SFDX_LAZY_LOAD_MODULES
 
-echo "Moving rapido-sf-plugin from build_dir to .local ..."
+echo "Moving rapido-sf-plugin to .local ..."
 
 mkdir -p ~/.local/share
 mv /app/vendor/sfdx/cli/share/sf ~/.local/share/.
+
+echo "sf CLI plugins"
+sf plugins
 EOF
 
   log "Generated $BUILD_DIR/.profile.d/rapido_salesforce_cli.sh to add CLI path"
