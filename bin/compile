@@ -75,6 +75,7 @@ install_rapido_sf_plugin() {
   sf plugins
 
   # Save the plugins' ~/.local/share, before moving it to ~/.local/share at runtime
+  mkdir -p $BUILD_DIR/vendor/sfdx/cli/share
   mv ~/.local/share/sf $BUILD_DIR/vendor/sfdx/cli/share/.
 }
 
