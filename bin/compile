@@ -87,11 +87,6 @@ install_jq() {
   chmod +x jq
 }
 
-install_puppeteer_chrome() {
-  echo y | npx @puppeteer/browsers
-  echo y | npx @puppeteer/browsers install chrome
-}
-
 setup_dirs() {
   export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
   export PATH="$BUILD_DIR/vendor/sfdx/jq:$PATH"
